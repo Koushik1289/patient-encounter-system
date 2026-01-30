@@ -1,8 +1,8 @@
 from datetime import datetime, timedelta, timezone
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
-from src.models.appointment import KoushikAppointment
-from src.models.doctor import KoushikDoctor
+from src.models.appointment import KoushikAppointment as KoushikAppointment
+from src.models.doctor import KoushikDoctor as KoushikDoctor
 
 def create_appointment(db: Session, data):
     now = datetime.now(timezone.utc)
