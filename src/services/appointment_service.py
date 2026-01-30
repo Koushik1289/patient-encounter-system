@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
-
 from src.models.appointment import KoushikAppointment
 from src.models.doctor import KoushikDoctor
 
