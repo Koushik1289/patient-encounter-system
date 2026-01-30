@@ -34,7 +34,8 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-
+      - name: Lint (ruff)
+        run: ruff src tests
 
       - name: Format check (black)
         run: black --check src tests
