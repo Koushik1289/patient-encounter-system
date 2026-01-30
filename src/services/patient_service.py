@@ -1,6 +1,5 @@
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
-
 from src.models.patient import KoushikPatient as Patient
 
 def create_patient(db: Session, data):
