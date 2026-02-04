@@ -38,7 +38,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+<<<<<<< HEAD
       - run: ruff check src tests
+=======
+      - name: Lint (ruff)
+        run: ruff check src --fix
+>>>>>>> 577784b7a45da4ba89f09b33f249607d8f4c0e43
 
 <<<<<<< HEAD
       - run: black --check src tests

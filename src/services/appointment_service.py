@@ -1,8 +1,13 @@
 from datetime import datetime, timedelta, timezone
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
+<<<<<<< HEAD
 from src.models.appointment import KoushikAppointment
 from src.models.doctor import KoushikDoctor
+=======
+from src.models.appointment import KoushikAppointment as KoushikAppointment
+from src.models.doctor import KoushikDoctor as KoushikDoctor
+>>>>>>> 577784b7a45da4ba89f09b33f249607d8f4c0e43
 
 
 def create_appointment(db: Session, data):
