@@ -14,6 +14,7 @@ def create_patient(db: Session, data):
     db.refresh(patient)
     return patient
 
+
 def get_patient(db: Session, patient_id: int):
     patient = db.query(Patient).filter(Patient.id == patient_id).first()
     if not patient:

@@ -29,14 +29,24 @@ jobs:
         with:
           python-version: "3.10"
 
+<<<<<<< HEAD
       - run: |
+=======
+      - name: Install dependencies
+        run: |
+>>>>>>> cd95714152bbca9b0d953230348be9820ced3bbb
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - run: ruff check src tests
 
+<<<<<<< HEAD
       - run: black --check src tests
 
       - run: bandit -r src
+=======
+      - name: Format check (black)
+        run: black --check src tests
+>>>>>>> cd95714152bbca9b0d953230348be9820ced3bbb
 
       - run: pytest --cov=src --cov-report=term-missing --cov-fail-under=80

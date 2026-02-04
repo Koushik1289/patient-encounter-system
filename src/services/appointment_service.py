@@ -4,6 +4,7 @@ from fastapi import HTTPException
 from src.models.appointment import KoushikAppointment
 from src.models.doctor import KoushikDoctor
 
+
 def create_appointment(db: Session, data):
     now = datetime.now(timezone.utc)
 
@@ -22,8 +23,11 @@ def create_appointment(db: Session, data):
         .filter(
             KoushikAppointment.doctor_id == data.doctor_id,
             KoushikAppointment.start_time < end,
-            (KoushikAppointment.start_time +
-             timedelta(minutes=KoushikAppointment.duration_minutes)) > start
+            (
+                KoushikAppointment.start_time
+                + timedelta(minutes=KoushikAppointment.duration_minutes)
+            )
+            > start,
         )
         .first()
     )

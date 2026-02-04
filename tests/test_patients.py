@@ -5,8 +5,8 @@ def test_create_patient_success(client):
             "first_name": "John",
             "last_name": "Doe",
             "email": "john.doe@test.com",
-            "phone": "9876543210"
-        }
+            "phone": "9876543210",
+        },
     )
     assert response.status_code == 201
     data = response.json()
@@ -21,8 +21,8 @@ def test_create_patient_duplicate_email(client):
             "first_name": "Jane",
             "last_name": "Doe",
             "email": "john.doe@test.com",
-            "phone": "9999999999"
-        }
+            "phone": "9999999999",
+        },
     )
     assert response.status_code == 400
 

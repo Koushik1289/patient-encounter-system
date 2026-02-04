@@ -23,7 +23,7 @@ from src.models.appointment import KoushikAppointment as Appointment
 app = FastAPI(
     title="Medical Encounter Management System (MEMS)",
     version="1.0.0",
-    description="Production-grade FastAPI backend for medical encounters"
+    description="Production-grade FastAPI backend for medical encounters",
 )
 
 # --------------------------------------------------
@@ -31,77 +31,64 @@ app = FastAPI(
 # --------------------------------------------------
 Base.metadata.create_all(bind=engine)
 
+
 # --------------------------------------------------
 # ROOT & HEALTH (VERY IMPORTANT)
 # --------------------------------------------------
 @app.get("/")
 def root():
-    return {
-        "message": "MEMS FastAPI is running",
-        "docs": "/docs",
-        "health": "/health"
-    }
+    return {"message": "MEMS FastAPI is running", "docs": "/docs", "health": "/health"}
+
 
 @app.get("/health")
 def health():
     return {"status": "UP"}
 
+
 # --------------------------------------------------
 # PATIENT APIs
 # --------------------------------------------------
 @app.post("/patients", response_model=PatientRead, status_code=201)
-def create_patient_api(
-    payload: PatientCreate,
-    db: Session = Depends(get_db)
-):
+def create_patient_api(payload: PatientCreate, db: Session = Depends(get_db)):
     return create_patient(db, payload)
 
+
 @app.get("/patients/{patient_id}", response_model=PatientRead)
-def get_patient_api(
-    patient_id: int,
-    db: Session = Depends(get_db)
-):
+def get_patient_api(patient_id: int, db: Session = Depends(get_db)):
     return get_patient(db, patient_id)
+
 
 # --------------------------------------------------
 # DOCTOR APIs
 # --------------------------------------------------
 @app.post("/doctors", response_model=DoctorRead, status_code=201)
-def create_doctor_api(
-    payload: DoctorCreate,
-    db: Session = Depends(get_db)
-):
+def create_doctor_api(payload: DoctorCreate, db: Session = Depends(get_db)):
     return create_doctor(db, payload)
 
+
 @app.get("/doctors/{doctor_id}", response_model=DoctorRead)
-def get_doctor_api(
-    doctor_id: int,
-    db: Session = Depends(get_db)
-):
+def get_doctor_api(doctor_id: int, db: Session = Depends(get_db)):
     return get_doctor(db, doctor_id)
 
+
 @app.patch("/doctors/{doctor_id}/deactivate", response_model=DoctorRead)
-def deactivate_doctor_api(
-    doctor_id: int,
-    db: Session = Depends(get_db)
-):
+def deactivate_doctor_api(doctor_id: int, db: Session = Depends(get_db)):
     return deactivate_doctor(db, doctor_id)
+
 
 # --------------------------------------------------
 # APPOINTMENT APIs
 # --------------------------------------------------
 @app.post("/appointments", response_model=AppointmentRead, status_code=201)
-def create_appointment_api(
-    payload: AppointmentCreate,
-    db: Session = Depends(get_db)
-):
+def create_appointment_api(payload: AppointmentCreate, db: Session = Depends(get_db)):
     return create_appointment(db, payload)
+
 
 @app.get("/appointments", response_model=list[AppointmentRead])
 def list_appointments_api(
     date_: date = Query(..., alias="date"),
     doctor_id: int | None = Query(None),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     query = db.query(Appointment)
 

@@ -1,10 +1,6 @@
 def test_create_doctor_success(client):
     response = client.post(
-        "/doctors",
-        json={
-            "name": "Dr Smith",
-            "specialization": "Cardiology"
-        }
+        "/doctors", json={"name": "Dr Smith", "specialization": "Cardiology"}
     )
     assert response.status_code == 201
     data = response.json()
